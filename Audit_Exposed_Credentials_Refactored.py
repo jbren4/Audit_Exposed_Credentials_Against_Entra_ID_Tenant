@@ -68,7 +68,9 @@ for cleaned_account_identifier in list_of_account_identifiers:
 print("Obtaining OAuthBearer Token")
 #Obtain Bearer Token
 request_for_oauth_Token_headers={"client_id":"","client_secret":"","resource":"https://graph.microsoft.com","grant_type":"client_credentials"}
-json_token=requests.post(url="https://login.microsoftonline.com/8e1d2836-0590-44ba-a737-5761471408d8/oauth2/token",data=request_for_oauth_Token_headers).json().get("access_token")
+json_token=requests.post(url="https://login.microsoftonline.com/8e1d2836-0590-44ba-a737-5761471408d8/oauth2/token",data=request_for_oauth_Token_headers).json().get('access_token')
+
+
 dictionary_for_user_requests={"Authorization":f"Bearer {json_token}"}
 print("Bearer Token obtained \n")
 #Obtain all the enabled member accounts within the directory
@@ -196,7 +198,7 @@ for account_id_within_breach_dataset in list_of_cleaned_account_identifiers_with
 print("First state of processing complete \n")
 
 #Begin the 2nd stage of processing. 
- print("Begin the second stage of processing \n")
+print("Begin the second stage of processing \n")
 
 print("Begin to process the UPN permutations ")
 #Check each breached account identifier + each possible UPN domain against UPNs of enabled+member directory accounts whose password hasn't changed since the breach date
